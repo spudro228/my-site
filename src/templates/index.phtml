@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Example Application</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+<body>
+<h1>hello</h1>
+
+<table class="pure-table">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Data creation</th>
+        <th>User</th>
+    </tr>
+
+<?php
+    foreach ($data['posts'] as $posts): ?>
+
+        <tr>
+            <td><?= $posts->getId() ?></td>
+            <td><?= $posts->getTitle() ?></td>
+            <td><?= $posts->getText() ?> </td>
+            <td><?= $posts->getDateCreation() ?> </td>
+            <td><?= $posts->getUser() ?> </td>
+
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+</body>
+
+
+</html>

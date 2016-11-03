@@ -1,0 +1,8 @@
+{
+    "name": "admin/htdocs",
+    "require": {
+        "slim/slim": "3.*",
+        "monolog/monolog": "^1.19",
+        "slim/php-view": "2.1.0"
+    }
+}
