@@ -16,7 +16,7 @@ class PostEntity implements Entity
     /**
      * @var array
      */
-    private $data;
+    //private $data;
 
     /**
      * PostEntity constructor.
@@ -102,11 +102,14 @@ class PostEntity implements Entity
      */
     function __get($property)
     {
+        /*
         //create function name
         $method = "get{$property}";
         //check that method exist and call him
         return (method_exists($this, $method)) ? $this->$method() : "Property {$property} doesn't exist.";
-
+        */
+        $_property = $this->data[$property];
+        return (isset($_property)) ? $_property : 'None';
     }
 
     /**
@@ -120,7 +123,7 @@ class PostEntity implements Entity
         //create function name
         $method = "get{$property}";
         //check that method exist
-        return method_exists($this, $method);
+        //return (property_exists())
     }
 
     /**

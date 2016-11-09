@@ -1,30 +1,30 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: admin
+ * Date: 12.08.2016
+ * Time: 22:57
+ */
+
+namespace Models\PostModel;
+
+
+use Models\Mapper;
+use Entitys\PostEntity;
+
+class PostModel extends Mapper
+{
+
+
+    //todo: оптимизировать запрос убрав лишние колонки
     /**
-     * Created by PhpStorm.
-     * User: admin
-     * Date: 12.08.2016
-     * Time: 22:57
+     * @return array
      */
-
-    namespace Models\PostModel;
-
-
-    use Models\Mapper;
-    use Entitys\PostEntity;
-
-    class PostModel extends Mapper
+    public
+    function getPosts()
     {
-
-
-        //todo: оптимизировать запрос убрав лишние колонки
-        /**
-         * @return array
-         */
-        public
-        function getPosts()
-        {
-            $sql_query = /** @lang MySQL */
-                'SELECT
+        $sql_query = /** @lang MySQL */
+            'SELECT
                                 p.id,
                                 p.title,
                                 p.text,
@@ -35,28 +35,42 @@
                             FROM
                                 post p
                                 JOIN user u ON (p.user_id = u.id)
-                                JOIN topic t ON (p.topic_id = t.id)
-     ;';
+                                JOIN topic t ON (p.topic_id = t.id);
+            ';
 
-            //todo: описать это все
+        //todo: описать это все
 
-            $stmt = $this->db->query($sql_query);
-            $results = [];
-            while ($row = $stmt->fetch()) {
-                $results[] = new PostEntity($row);
-            }
-            return $results;
-
-
+        $stmt = self::$db->query($sql_query);
+        $results = [];
+        while ($row = $stmt->fetch()) {
+            $results[] = new PostEntity($row);
         }
+        return $results;
 
-        public function update()
-        {
-            // TODO: Implement update() method.
-        }
 
-        public function insert()
-        {
-            // TODO: Implement insert() method.
-        }
     }
+
+    public function update()
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function doInsert()
+    {
+        // TODO: Implement insert() method.
+    }
+
+    protected function doCreateObject()
+    {
+        // TODO: Implement doCreateObject() method.
+    }
+
+    /**
+     *
+     * @return mixed - sql prepare Statements
+     */
+    protected function selectStmt()
+    {
+        // TODO: Implement selectStmt() method.
+    }
+}

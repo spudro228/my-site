@@ -1,22 +1,45 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: admin
+ * Date: 12.08.2016
+ * Time: 22:09
+ */
+
+namespace Models;
+
+
+abstract class Mapper
+{
+
+    protected static $db;
+
     /**
-     * Created by PhpStorm.
-     * User: admin
-     * Date: 12.08.2016
-     * Time: 22:09
+     * Mapper constructor.
+     * @param $db \PDO
      */
-
-    namespace Models;
-
-
-    abstract class Mapper
+    //todo:: переписать все под static метод
+    public function __construct($db)
     {
-        protected $db;
-        public function __construct($db)
-        {
-            $this->db = $db;
-        }
-
-        protected abstract function update();
-        protected abstract function insert();
+        self::$db = $db;
     }
+
+    protected function findById()
+    {
+    }
+
+    protected function update()
+    {
+    }
+
+    protected abstract function doCreateObject();
+
+    protected abstract function doInsert();
+
+    /**
+     *
+     * @return mixed - sql prepare Statements
+     */
+    protected abstract function selectStmt();
+
+}
