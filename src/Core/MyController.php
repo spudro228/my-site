@@ -30,7 +30,7 @@
          *
          * @return mixed - rendered page
          */
-        public function method1($request, $response, $args)
+        public function getAll($request, $response, $args)
         {
             //            foreach ($this->var->getPosts() as $key => $value) {
             //                echo "<tr><td>{$key}</td><td>{$value}</td></tr></br>";

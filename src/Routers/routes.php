@@ -11,6 +11,8 @@
     $app->get('/', function ($request, $response, $args) {
         $this->logger->addInfo("Welcome - run:)");
         $response->write('Main page.');
+        echo $_SERVER['SERVER_ADDR'];
+        echo $_SERVER['SERVER_PORT'];
         return $response;
     });
     $app->get('/hello[/{name}]', function ($request, $response, $args) {
@@ -19,7 +21,7 @@
     })->setArgument('name', 'World!');
 
 
-    $app->get('/getCi', '\MyController:method1');
+    $app->get('/getCi', '\MyController:getAll');
 
     $app->get('/test', function ($response) {
 

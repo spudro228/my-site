@@ -14,10 +14,10 @@
 
     //todo: вынести в отдельный файл настроек
     $config['displayErrorDetails'] = true;
-    $config['db']['host']   = 'localhost';
+    $config['db']['host']   = '104.155.116.232';
     $config['db']['user']   = 'root';
-    $config['db']['pass']   = '';
-    $config['db']['dbname'] = 'mydb';
+    $config['db']['pass']   = '1488';
+    $config['db']['dbname'] = 'forum';
 
 
     $app = new \Slim\App(["settings" => $config]);

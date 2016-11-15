@@ -6,22 +6,27 @@
 <body>
 <h1>hello</h1>
 
+
+
 <table class="pure-table">
     <tr>
         <th>Id</th>
         <th>Title</th>
         <th>Text</th>
+        <th>Topic</th>
         <th>Data creation</th>
         <th>User</th>
     </tr>
 
 <?php
+(isset($data['posts']))? var_dump($data['posts']): 'None';
     foreach ($data['posts'] as $posts): ?>
 
         <tr>
             <td><?= $posts->getId() ?></td>
             <td><?= $posts->getTitle() ?></td>
             <td><?= $posts->getText() ?> </td>
+            <td><?= $posts->getTopic() ?> </td>
             <td><?= $posts->getDateCreation() ?> </td>
             <td><?= $posts->getUser() ?> </td>
 

@@ -23,7 +23,9 @@ class PostModel extends Mapper
     public
     function getPosts()
     {
-        $sql_query = /** @lang MySQL */
+        /*
+         *
+         $sql_query =
             'SELECT
                                 p.id,
                                 p.title,
@@ -37,15 +39,21 @@ class PostModel extends Mapper
                                 JOIN user u ON (p.user_id = u.id)
                                 JOIN topic t ON (p.topic_id = t.id);
             ';
+        */
+        $sql_query = 'SELECT p.id, p.title, p.text, p.topic, data_creation FROM post p;';
+
 
         //todo: описать это все
 
         $stmt = self::$db->query($sql_query);
-        $results = [];
+        /*$results = [];
         while ($row = $stmt->fetch()) {
             $results[] = new PostEntity($row);
         }
-        return $results;
+        return $results;*/
+        foreach ( $stmt as $item) {
+            yield new PostEntity($item);
+        }
 
 
     }

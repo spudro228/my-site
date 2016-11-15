@@ -9,7 +9,7 @@ class PostEntity implements Entity
     protected $title;
     protected $text;
     protected $date_creation;
-    //protected $topic;
+    protected $topic;
     //protected $date_change
     protected $post_parent;
     protected $user;
@@ -26,7 +26,8 @@ class PostEntity implements Entity
      *
      * @param array $data
      */
-    public function __construct(array $data)
+    //todo: определить тип заглушку , только ля итерируемых
+    public function __construct($data)
     {
         //$data .= iterator_to_array($data,true);
 
@@ -35,9 +36,10 @@ class PostEntity implements Entity
             $this->id = $data['id'];
             $this->title = $data['title'];
             $this->text = $data['text'];
-            $this->date_creation = $data['date_creation'];
-            $this->post_parent = $data['post_parent'];
-            $this->user = $data['user_name'];
+            $this->topic = $data['topic'];
+            $this->date_creation = $data['data_creation'];
+            //$this->post_parent = $data['post_parent'];
+            //$this->user = $data['user_name'];
         }
 
     }
@@ -65,6 +67,10 @@ class PostEntity implements Entity
     public function getText()
     {
         return $this->text;
+    }
+
+    public function getTopic(){
+        return $this->topic;
     }
 
     /**
@@ -109,7 +115,7 @@ class PostEntity implements Entity
         return (method_exists($this, $method)) ? $this->$method() : "Property {$property} doesn't exist.";
         */
         $_property = $this->data[$property];
-        return (isset($_property)) ? $_property : 'None';
+        return (property_exists($_property)) ? $_property : 'Property not exist';
     }
 
     /**
@@ -121,7 +127,7 @@ class PostEntity implements Entity
     function __isset($property)
     {
         //create function name
-        $method = "get{$property}";
+        //$method = "get{$property}";
         //check that method exist
         //return (property_exists())
     }
