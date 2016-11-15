@@ -9,6 +9,8 @@
 namespace Models;
 
 
+use Entitys\Entity;
+
 abstract class Mapper
 {
 
@@ -34,7 +36,7 @@ abstract class Mapper
 
     protected abstract function doCreateObject();
 
-    protected abstract function doInsert();
+    protected abstract function doInsert(Entity $entity);
 
     /**
      *

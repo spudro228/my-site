@@ -1,30 +1,42 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: admin
-     * Date: 07.08.2016
-     * Time: 13:54
-     */
+/**
+ * Created by PhpStorm.
+ * User: admin
+ * Date: 07.08.2016
+ * Time: 13:54
+ */
 
-    //Main routes
-
-    $app->get('/', function ($request, $response, $args) {
-        $this->logger->addInfo("Welcome - run:)");
-        $response->write('Main page.');
-        echo $_SERVER['SERVER_ADDR'];
-        echo $_SERVER['SERVER_PORT'];
-        return $response;
-    });
-    $app->get('/hello[/{name}]', function ($request, $response, $args) {
-        $response->write("Hello, " . $args['name']);
-        return $response;
-    })->setArgument('name', 'World!');
+//Main routes
+//todo: удалить
+use Entitys\PostEntity;
+use Models\PostModel\PostModel;
+use Psr\Http\Message\RequestInterface as Request;
+use Slim\Http\Response;
 
 
-    $app->get('/getCi', '\MyController:getAll');
+//use Psr\Http\Message\ResponseInterface as Response;
 
-    $app->get('/test', function ($response) {
+$app->get('/', function (Request $request, Response $response) {
+    $this->logger->addInfo("Welcome - run:)");
+    return $this->view->render($response, 'index.phtml');
+});
+$app->get('/hello[/{name}]', function ($request, Response $response, $args) {
+    $response->write("Hello, " . $args['name']);
+    return $response;
+})->setArgument('name', 'World!');
 
-        return var_dump($this->db);
 
-    });
+$app->get('/getPosts', PostsController::class . ':getAll');
+
+
+$app->post('/createPost', function (\Slim\Http\Request $request, Response $response) {
+    var_dump($request->getParsedBody());
+    $model = new PostModel($this->db);
+    $model->doInsert(new PostEntity($request->getParsedBody()));
+});
+
+$app->get('/test', function ($response) {
+
+    var_dump($this->db);
+
+});

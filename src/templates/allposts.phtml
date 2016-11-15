@@ -1,0 +1,61 @@
+<?php
+/**
+ * Created by Dmity Smolyakov.
+ * User: spudro228
+ * Date: 15.11.2016
+ * Time: 17:02
+ */
+?>
+<html>
+<head>
+    <title>Posts</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+</head>
+<body>
+<h1>All Posts</h1>
+
+
+<table class="pure-table">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>Topic</th>
+        <th>Data creation</th>
+        <th>User</th>
+    </tr>
+
+    <?php
+    (isset($data['posts'])) ? var_dump($data['posts']) : 'None';
+    foreach ($data['posts'] as $posts): ?>
+
+        <tr>
+            <td><?= $posts->getId() ?></td>
+            <td><?= $posts->getTitle() ?></td>
+            <td><?= $posts->getText() ?> </td>
+            <td><?= $posts->getTopic() ?> </td>
+            <td><?= $posts->getDateCreation() ?> </td>
+            <td><?= $posts->getUser() ?> </td>
+
+        </tr>
+    <?php endforeach; ?>
+
+</table>
+
+<form class="pure-form pure-form-stacked" action="/createPost" method="post">
+    <fieldset>
+        <input type="text" placeholder="Title"  name="title"/>
+
+        <textarea placeholder="Text" name="text">
+            Some text...
+        </textarea>
+
+        <button type="submit" class="pure-button">Sign in</button>
+    </fieldset>
+
+</form>
+<a href="/">Back</a>
+</body>
+
+
+</html>

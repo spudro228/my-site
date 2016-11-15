@@ -13,6 +13,7 @@ class PostEntity implements Entity
     //protected $date_change
     protected $post_parent;
     protected $user;
+
     /**
      * @var array
      */
@@ -31,15 +32,25 @@ class PostEntity implements Entity
     {
         //$data .= iterator_to_array($data,true);
 
-        if (isset($data['id'])) {
+        /*if (isset($data['id'])) {
 
-            $this->id = $data['id'];
-            $this->title = $data['title'];
-            $this->text = $data['text'];
-            $this->topic = $data['topic'];
-            $this->date_creation = $data['data_creation'];
-            //$this->post_parent = $data['post_parent'];
-            //$this->user = $data['user_name'];
+
+        }*/
+
+        $setProperty = function ($field_name) use ($data)
+        {
+            //todo: поменять none
+            return (isset($data[$field_name])) ? $data[$field_name] : "none";
+        };
+
+        if (isset($data['id'])) {
+            $this->id = $setProperty('title');
+            $this->title = $setProperty('title');
+            $this->text = $setProperty('text');
+            $this->topic = $setProperty('topic');
+            $this->date_creation = $setProperty('data_creation');
+            $this->post_parent = $setProperty('post_parent');
+            $this->user = $setProperty('user_name');
         }
 
     }
@@ -69,7 +80,8 @@ class PostEntity implements Entity
         return $this->text;
     }
 
-    public function getTopic(){
+    public function getTopic()
+    {
         return $this->topic;
     }
 
@@ -114,8 +126,8 @@ class PostEntity implements Entity
         //check that method exist and call him
         return (method_exists($this, $method)) ? $this->$method() : "Property {$property} doesn't exist.";
         */
-        $_property = $this->data[$property];
-        return (property_exists($_property)) ? $_property : 'Property not exist';
+
+        return (property_exists($this, $property)) ? $this->$property : 'Property not exist';
     }
 
     /**

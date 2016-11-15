@@ -11,6 +11,7 @@ namespace Models\PostModel;
 
 use Models\Mapper;
 use Entitys\PostEntity;
+use Entitys\Entity;
 
 class PostModel extends Mapper
 {
@@ -20,8 +21,7 @@ class PostModel extends Mapper
     /**
      * @return array
      */
-    public
-    function getPosts()
+    public function getPosts()
     {
         /*
          *
@@ -51,7 +51,7 @@ class PostModel extends Mapper
             $results[] = new PostEntity($row);
         }
         return $results;*/
-        foreach ( $stmt as $item) {
+        foreach ($stmt as $item) {
             yield new PostEntity($item);
         }
 
@@ -63,9 +63,9 @@ class PostModel extends Mapper
         // TODO: Implement update() method.
     }
 
-    public function doInsert()
+    public function doInsert(Entity $entity)
     {
-        // TODO: Implement insert() method.
+        var_dump($entity);
     }
 
     protected function doCreateObject()
