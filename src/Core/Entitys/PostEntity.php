@@ -23,7 +23,6 @@ class PostEntity implements Entity
      *
      * @param array|\Generator $data
      */
-    //todo: определить тип заглушку , только ля итерируемых
     public function __construct($data)
     {
 
