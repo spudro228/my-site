@@ -29,10 +29,11 @@ $app->get('/hello[/{name}]', function ($request, Response $response, $args) {
 $app->get('/getPosts', PostsController::class . ':getAll');
 
 
-$app->post('/createPost', function (\Slim\Http\Request $request, Response $response) {
-    var_dump($request->getParsedBody());
+$app->post('/createPost', function (\Slim\Http\Request $request, Response $response) use ($app) {
+    //var_dump($request->getParsedBody());
     $model = new PostModel($this->db);
     $model->doInsert(new PostEntity($request->getParsedBody()));
+    return $response->withRedirect('/getPosts');
 });
 
 $app->get('/test', function ($response) {

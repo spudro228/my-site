@@ -30,20 +30,14 @@ class PostEntity implements Entity
     //todo: определить тип заглушку , только ля итерируемых
     public function __construct($data)
     {
-        //$data .= iterator_to_array($data,true);
-
-        /*if (isset($data['id'])) {
-
-
-        }*/
 
         $setProperty = function ($field_name) use ($data)
         {
             //todo: поменять none
-            return (isset($data[$field_name])) ? $data[$field_name] : "none";
+            return (isset($data[$field_name])) ? $data[$field_name] : null;
         };
 
-        if (isset($data['id'])) {
+
             $this->id = $setProperty('title');
             $this->title = $setProperty('title');
             $this->text = $setProperty('text');
@@ -51,7 +45,7 @@ class PostEntity implements Entity
             $this->date_creation = $setProperty('data_creation');
             $this->post_parent = $setProperty('post_parent');
             $this->user = $setProperty('user_name');
-        }
+
 
     }
 
@@ -138,6 +132,7 @@ class PostEntity implements Entity
      */
     function __isset($property)
     {
+        //TODO: Implement __isset() method IN PostEntity.
         //create function name
         //$method = "get{$property}";
         //check that method exist

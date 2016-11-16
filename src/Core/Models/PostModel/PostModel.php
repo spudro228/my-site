@@ -65,7 +65,14 @@ class PostModel extends Mapper
 
     public function doInsert(Entity $entity)
     {
-        var_dump($entity);
+        //var_dump($entity);
+        $stmt = self::$db->prepare("INSERT INTO post (title, text, topic) VALUES (:title, :text, 'is_topic')");
+        $stmt->bindParam(':title',$title = 'text');
+        $stmt->bindParam(':text',$text = 'text');
+        /*$title = 'title';
+        $text = 'text';*/
+        $stmt->execute();
+
     }
 
     protected function doCreateObject()
