@@ -10,41 +10,35 @@ class PostEntity implements Entity
     protected $text;
     protected $date_creation;
     protected $topic;
-    //protected $date_change
     protected $post_parent;
     protected $autor;
 
-    /**
-     * @var array
-     */
-    //private $data;
 
     /**
      * PostEntity constructor.
      *
-     * Accept an array data from data model
-     * and matching properties  data<->entity
+     * Accept an array data from model of data
+     * and matching properties
+     * data<->entity
      *
-     * @param array $data
+     * @param array|\Generator $data
      */
     //todo: определить тип заглушку , только ля итерируемых
     public function __construct($data)
     {
 
-        $setProperty = function ($field_name) use ($data)
-        {
-            //todo: поменять none
+        $setProperty = function ($field_name) use ($data) {
             return (isset($data[$field_name])) ? $data[$field_name] : null;
         };
 
 
-            $this->id = $setProperty('title');
-            $this->title = $setProperty('title');
-            $this->text = $setProperty('text');
-            $this->topic = $setProperty('topic');
-            $this->date_creation = $setProperty('data_creation');
-            $this->post_parent = $setProperty('post_parent');
-            $this->autor = $setProperty('autor');
+        $this->id = $setProperty('title');
+        $this->title = $setProperty('title');
+        $this->text = $setProperty('text');
+        $this->topic = $setProperty('topic');
+        $this->date_creation = $setProperty('data_creation');
+        $this->post_parent = $setProperty('post_parent');
+        $this->autor = $setProperty('autor');
 
 
     }
@@ -103,23 +97,17 @@ class PostEntity implements Entity
         return $this->autor;
     }
 
-    // todo:: check, how to work
     /**
      * To easy handling property.
      *
      * @param $property
      *
-     * @internal param $name - property name for handling
-     * @return mixed|void
+     * @internal param $property - property name for handling
+     * @return mixed|string
      */
     function __get($property)
     {
-        /*
-        //create function name
-        $method = "get{$property}";
-        //check that method exist and call him
-        return (method_exists($this, $method)) ? $this->$method() : "Property {$property} doesn't exist.";
-        */
+
 
         return (property_exists($this, $property)) ? $this->$property : 'Property not exist';
     }
