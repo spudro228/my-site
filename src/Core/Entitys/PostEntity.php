@@ -12,7 +12,7 @@ class PostEntity implements Entity
     protected $topic;
     //protected $date_change
     protected $post_parent;
-    protected $user;
+    protected $autor;
 
     /**
      * @var array
@@ -44,7 +44,7 @@ class PostEntity implements Entity
             $this->topic = $setProperty('topic');
             $this->date_creation = $setProperty('data_creation');
             $this->post_parent = $setProperty('post_parent');
-            $this->user = $setProperty('user_name');
+            $this->autor = $setProperty('autor');
 
 
     }
@@ -98,9 +98,9 @@ class PostEntity implements Entity
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getAutor()
     {
-        return $this->user;
+        return $this->autor;
     }
 
     // todo:: check, how to work

@@ -40,7 +40,7 @@ class PostModel extends Mapper
                                 JOIN topic t ON (p.topic_id = t.id);
             ';
         */
-        $sql_query = 'SELECT p.id, p.title, p.text, p.topic, data_creation FROM post p;';
+        $sql_query = 'SELECT p.id, p.title, p.text, p.topic, p.data_creation, p.autor FROM post p;';
 
 
         //todo: описать это все

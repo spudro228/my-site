@@ -10,17 +10,14 @@
 //todo: удалить
 use Entitys\PostEntity;
 use Models\PostModel\PostModel;
-use Psr\Http\Message\RequestInterface as Request;
+use Slim\Http\Request as Request;
 use Slim\Http\Response;
-
-
-//use Psr\Http\Message\ResponseInterface as Response;
 
 $app->get('/', function (Request $request, Response $response) {
     $this->logger->addInfo("Welcome - run:)");
     return $this->view->render($response, 'index.phtml');
 });
-$app->get('/hello[/{name}]', function ($request, Response $response, $args) {
+$app->get('/hello[/{name}]', function (Request $request, Response $response, $args) {
     $response->write("Hello, " . $args['name']);
     return $response;
 })->setArgument('name', 'World!');
