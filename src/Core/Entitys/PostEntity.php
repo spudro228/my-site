@@ -11,7 +11,7 @@ class PostEntity implements Entity
     protected $date_creation;
     protected $topic;
     protected $post_parent;
-    protected $autor;
+    protected $author;
 
 
     /**
@@ -37,7 +37,7 @@ class PostEntity implements Entity
         $this->topic = $setProperty('topic');
         $this->date_creation = $setProperty('data_creation');
         $this->post_parent = $setProperty('post_parent');
-        $this->autor = $setProperty('autor');
+        $this->author = $setProperty('autor');
 
 
     }
@@ -91,9 +91,9 @@ class PostEntity implements Entity
     /**
      * @return mixed
      */
-    public function getAutor()
+    public function getAuthor()
     {
-        return $this->autor;
+        return $this->author;
     }
 
     /**

@@ -30,12 +30,12 @@
     foreach ($data['posts'] as $posts): ?>
 
         <tr>
-            <td><?= $posts->getId() ?></td>
-            <td><?= $posts->getTitle() ?></td>
-            <td><?= $posts->getText() ?> </td>
-            <td><?= $posts->getTopic() ?> </td>
-            <td><?= $posts->getDateCreation() ?> </td>
-            <td><?= $posts->getUser() ?> </td>
+            <td><?= $posts->id ?></td>
+            <td><?= $posts->title ?></td>
+            <td><?= $posts->text ?> </td>
+            <td><?= $posts->topi ?> </td>
+            <td><?= $posts->date_creation ?> </td>
+            <td><?= $posts->author ?> </td>
 
         </tr>
     <?php endforeach; ?>
@@ -44,7 +44,7 @@
 
 <form class="pure-form pure-form-stacked" action="/createPost" method="post">
     <fieldset>
-        <input type="text" placeholder="Title"  name="title"/>
+        <input type="text" placeholder="Title" name="title"/>
 
         <textarea placeholder="Text" name="text">
             Some text...

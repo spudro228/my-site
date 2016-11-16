@@ -40,6 +40,7 @@ class PostModel extends Mapper
                                 JOIN topic t ON (p.topic_id = t.id);
             ';
         */
+        //todo: обновить таблицу и переименовать поле autot (добавить 'H')
         $sql_query = 'SELECT p.id, p.title, p.text, p.topic, p.data_creation, p.autor FROM post p;';
 
 
