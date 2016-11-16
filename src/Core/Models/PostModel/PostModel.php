@@ -64,14 +64,14 @@ class PostModel extends Mapper
         // TODO: Implement update() method.
     }
 
-    public function doInsert(Entity $entity)
+    public function doInsert(PostEntity $entity)
     {
-        //var_dump($entity);
+        var_dump($entity);
         $stmt = self::$db->prepare("INSERT INTO post (title, text, topic) VALUES (:title, :text, 'is_topic')");
-        $stmt->bindParam(':title',$title = 'text');
-        $stmt->bindParam(':text',$text = 'text');
-        /*$title = 'title';
-        $text = 'text';*/
+
+        $stmt->bindParam(':title', $entity->getTitle());
+        $stmt->bindParam(':text', $entity->getText());
+
         $stmt->execute();
 
     }

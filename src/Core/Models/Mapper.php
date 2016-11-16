@@ -36,7 +36,9 @@ abstract class Mapper
 
     protected abstract function doCreateObject();
 
-    protected abstract function doInsert(Entity $entity);
+    protected function doInsert(){
+
+    }
 
     /**
      *

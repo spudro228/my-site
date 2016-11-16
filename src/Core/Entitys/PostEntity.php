@@ -31,7 +31,7 @@ class PostEntity implements Entity
         };
 
 
-        $this->id = $setProperty('title');
+        $this->id = $setProperty('id');
         $this->title = $setProperty('title');
         $this->text = $setProperty('text');
         $this->topic = $setProperty('topic');

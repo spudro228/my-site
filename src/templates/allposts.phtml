@@ -26,14 +26,12 @@
     </tr>
 
     <?php
-    (isset($data['posts'])) ? var_dump($data['posts']) : 'None';
     foreach ($data['posts'] as $posts): ?>
-
         <tr>
             <td><?= $posts->id ?></td>
             <td><?= $posts->title ?></td>
             <td><?= $posts->text ?> </td>
-            <td><?= $posts->topi ?> </td>
+            <td><?= $posts->topic ?> </td>
             <td><?= $posts->date_creation ?> </td>
             <td><?= $posts->author ?> </td>
 
@@ -45,12 +43,11 @@
 <form class="pure-form pure-form-stacked" action="/createPost" method="post">
     <fieldset>
         <input type="text" placeholder="Title" name="title"/>
+        <textarea placeholder="Text" name="text" cols="50" rows="10">
 
-        <textarea placeholder="Text" name="text">
-            Some text...
         </textarea>
 
-        <button type="submit" class="pure-button">Sign in</button>
+        <button type="submit" class="pure-button">Отправить</button>
     </fieldset>
 
 </form>
