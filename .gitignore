@@ -2,4 +2,11 @@
 vendor/
 composer.lock
 composer.phar
-/logs/**/app.log
+logs/
+
+sql/
+test.php
+
+tests/
+
+src/settings.php

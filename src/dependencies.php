@@ -5,6 +5,7 @@
 
 
 use Slim\Views\PhpRenderer;
+use Symfony\Component\Validator\Validation;
 
 $container = $app->getContainer();
 
@@ -16,11 +17,12 @@ $container = $app->getContainer();
  * with help $this->logger->addInfo("...");
  * @return \Monolog\Logger
  */
-$container['logger'] = function () {
-    $logger = new Monolog\Logger('my_logger');
-    $file_handler = new Monolog\Handler\StreamHandler("../logs/app.log");
-    $logger->pushHandler($file_handler);
-    return $logger;
+$container['logger'] = function ($c) {
+
+    $log = $c['settings']['logger'];
+    $logger = new Monolog\Logger($log['name']);
+    $file_handler = new Monolog\Handler\StreamHandler($log['path'], $log['level']); //"../logs/app.log"
+    return $logger->pushHandler($file_handler);
 };
 
 /**
@@ -55,7 +57,13 @@ $container['db'] = function ($c) {
             ]);
 };
 
-$container['view'] = new PhpRenderer(__DIR__ . "/templates/");
+$container['validator'] = Validation::createValidatorBuilder()
+    ->addYamlMapping(function ($pathsArray) {
+        return ;
+    })
+    ->getValidator();
+
+$container['view'] = new PhpRenderer($container['settings']['renderer']['template_path']);
 
 
 

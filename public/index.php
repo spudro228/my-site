@@ -13,14 +13,14 @@
     });
 
     //todo: вынести в отдельный файл настроек
-    $config['displayErrorDetails'] = true;
+    /*$config['displayErrorDetails'] = true;
     $config['db']['host']   = '104.155.116.232';
     $config['db']['user']   = 'root';
     $config['db']['pass']   = '1488';
-    $config['db']['dbname'] = 'forum';
+    $config['db']['dbname'] = 'forum';*/
 
-
-    $app = new \Slim\App(["settings" => $config]);
+    $settings = require __DIR__ .'/../src/settings.php';
+    $app = new \Slim\App($settings);
 
     require __DIR__ . '/../src/dependencies.php';
 
