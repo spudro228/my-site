@@ -21,7 +21,7 @@ abstract class Mapper
      * @param $db \PDO
      */
     //todo:: переписать все под static метод
-    public function __construct($db)
+    public final function  __construct($db)
     {
         self::$db = $db;
     }

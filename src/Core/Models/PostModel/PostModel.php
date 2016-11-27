@@ -44,8 +44,6 @@ class PostModel extends Mapper
         $sql_query = 'SELECT p.id, p.title, p.text, p.topic, p.data_creation, p.autor FROM post p;';
 
 
-        //todo: описать это все
-
         $stmt = self::$db->query($sql_query);
         /*$results = [];
         while ($row = $stmt->fetch()) {
@@ -59,14 +57,9 @@ class PostModel extends Mapper
 
     }
 
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
     public function doInsert(PostEntity $entity)
     {
-        var_dump($entity);
+        //var_dump($entity);
         $stmt = self::$db->prepare("INSERT INTO post (title, text, topic) VALUES (:title, :text, 'is_topic')");
 
         $stmt->bindParam(':title', $entity->getTitle());
@@ -78,7 +71,7 @@ class PostModel extends Mapper
 
     protected function doCreateObject()
     {
-        // TODO: Implement doCreateObject() method.
+        return $this->getPosts();
     }
 
     /**

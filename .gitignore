@@ -5,7 +5,7 @@ composer.phar
 logs/
 
 sql/
-test.php
+
 
 tests/
 

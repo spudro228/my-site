@@ -5,7 +5,7 @@
 
 
 use Slim\Views\PhpRenderer;
-use Symfony\Component\Validator\Validation;
+
 
 $container = $app->getContainer();
 
@@ -15,6 +15,7 @@ $container = $app->getContainer();
  */
 /** Now i can write into log
  * with help $this->logger->addInfo("...");
+ * @param $c
  * @return \Monolog\Logger
  */
 $container['logger'] = function ($c) {
@@ -57,11 +58,6 @@ $container['db'] = function ($c) {
             ]);
 };
 
-$container['validator'] = Validation::createValidatorBuilder()
-    ->addYamlMapping(function ($pathsArray) {
-        return ;
-    })
-    ->getValidator();
 
 $container['view'] = new PhpRenderer($container['settings']['renderer']['template_path']);
 

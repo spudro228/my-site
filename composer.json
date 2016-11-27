@@ -1,9 +1,10 @@
 {
     "name": "admin/htdocs",
     "require": {
-        "slim/slim": "3.*",
         "monolog/monolog": "^1.19",
         "slim/php-view": "2.1.0",
-        "symfony/validator": "v3.1.6"
+        "slim/slim": "3.6.0",
+        "illuminate/validation": "v5.3.23"
+
     }
 }

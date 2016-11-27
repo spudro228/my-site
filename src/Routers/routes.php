@@ -7,11 +7,16 @@
  */
 
 //Main routes
-//todo: удалить
+
 use Entitys\PostEntity;
+//use Illuminate\Validation\Validator;
 use Models\PostModel\PostModel;
-use Slim\Http\Request as Request;
+use Psr\Http\Message\ServerRequestInterface as Request;
+//use Psr\Http\Message\ResponseInterface as Response;
+use Illuminate\Validation\Factory as Validator;
 use Slim\Http\Response;
+use Symfony\Component\Translation\Translator;
+
 
 $app->get('/', function (Request $request, Response $response) {
     $this->logger->addInfo("Welcome - run:)");
@@ -26,13 +31,25 @@ $app->get('/hello[/{name}]', function (Request $request, Response $response, $ar
 $app->get('/getPosts', PostsController::class . ':getAll');
 
 
-$app->post('/createPost', function (Psr\Http\Message\ServerRequestInterface $request, Response $response) use ($app) {
+$app->post('/createPost', function (Request $request, Response $response) use ($app) {
     //var_dump($request->getAttributes());
-    //var_dump($request->getParsedBody()['text']);
+    //var_dump($request->getParsedBody());
+    //$val = new Validators(null, $this);
+    //TODO: валидатор заработал . теперь нужно его поместить в контейнер и сделать вывод " неправильно заполнена форма"
+    $val = new Validator(new Translator('ru'));
+
+    $v = $val->make($request->getParsedBody(),
+        ['title' => 'required|max:5']
+    );
+    var_dump($v->fails());
+    if (!$v->fails())
+    {
+        return $response->withRedirect('/getPosts');
+    }
     $model = new PostModel($this->db);
-    var_dump($request->getParsedBody());
+    //var_dump($request->getParsedBody());
     $data = new PostEntity($request->getParsedBody());
-    var_dump($data);
+    //var_dump($data);
     $model->doInsert($data);
     //return $response->withRedirect('/getPosts');
 });
